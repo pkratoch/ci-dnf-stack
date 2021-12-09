@@ -92,3 +92,21 @@ Examples:
         | file provide                 | /etc/ld.so.conf  |
         | file provide with wildcards  | /etc/ld*conf     |
         | directory provide            | /var/db/         |
+
+
+Scenario: Installation by provide prefers matching package name
+  Given I use repository "name-provides"
+   When I execute dnf with args "install PackageA"
+   Then the exit code is 0
+    And Transaction is following
+        | Action        | Package                     |
+        | install       | PackageA-1:2.1-1.x86_64     |
+
+
+Scenario: Installation by provide prefers matching package name even when the provide is versioned
+  Given I use repository "name-provides"
+   When I execute dnf with args "install PackageB"
+   Then the exit code is 0
+    And Transaction is following
+        | Action        | Package                     |
+        | install       | PackageB-1:2.1-1.x86_64     |

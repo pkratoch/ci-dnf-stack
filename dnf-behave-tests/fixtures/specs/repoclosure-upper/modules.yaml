@@ -1,0 +1,40 @@
+---
+document: modulemd
+version: 2
+data:
+  name: simple
+  stream: stream
+  version: 2018
+  context: aaaaaaaa
+  arch: x86_64
+  summary: Simple module
+  description: >-
+    Simple module
+  license:
+    module:
+    - MIT
+    content:
+    - MIT and ASL 2.0 and ISC and BSD
+  dependencies:
+  - buildrequires:
+      platform: [f29]
+    requires:
+      platform: [f29]
+  profiles:
+    default:
+      rpms:
+      - simple-module-package
+  artifacts:
+    rpms:
+    - simple-module-package-0:1-1.module.x86_64
+    - simple-module-package-0:1-1.module.src
+...
+---
+document: modulemd-defaults
+version: 1
+data:
+    module: simple
+    stream: stream
+    profiles:
+        stream: [default]
+...
